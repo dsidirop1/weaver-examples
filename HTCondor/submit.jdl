@@ -1,6 +1,6 @@
 request_cpus          = 8
 request_gpus          = 1
-requirements          = regexp("100", TARGET.GPUs_DeviceName)
+requirements          = TARGET.GPUs > 0
 executable            = run.sh
 should_transfer_files = YES
 output                = train.$(ClusterId).$(ProcId).out
@@ -9,6 +9,10 @@ log                   = train.$(ClusterId).log
 use_x509userproxy     = true
 WhenToTransferOutput  = ON_EXIT
 want_graceful_removal = true
+transfer_input_files = /eos/user/c/coli/public/weaver-benchmark/top_tagging/samples, \
+                       /eos/user/d/disidiro/miniconda3, \
+                       /eos/user/d/disidiro/weaver-benchmark/top_tagging, \
+                       /eos/user/d/disidiro/weaver-core/weaver/output
 
 +JobFlavour = "tomorrow"
 
